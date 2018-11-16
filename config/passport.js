@@ -38,35 +38,56 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, username, password, done) {
-
         // asynchronous
         // User.findOne wont fire unless data is sent back
+        
         process.nextTick(function() {
 
+        if(username.trim() !== username || password.trim() !== password) {
+            console.log('trim didnt work');
+            return done(null, false, req.flash('signupMessage', 'Cannot start or end with whitespace'));
+        }
+
+        if(!username || !password) {
+            console.log('username||password didnt work');
+            return done(null, false, req.flash('signupMessage', 'Missing required field'));
+        }
+
+        if(password.length < 8 ) {
+            console.log('password length test fail');
+            return done(null, false, req.flash('signupMessage', 'Password is too short '));
+        }
+        
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
         User.findOne({ 'local.username' :  username }, function(err, user) {
+            
             // if there are any errors, return the error
-            if (err)
+            if (err) {
+                console.log('Error occured');
                 return done(err);
+            }
 
             // check to see if theres already a user with that email
-            if (user) {
+            if (user) { 
+                console.log('username already taken error');
                 return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
-            } else {
+            } else { 
 
                 // if there is no user with that email
                 // create the user
                 const newUser = new User();
-
+                
                 // set the user's local credentials
                 newUser.local.username = username;
                 newUser.local.password = newUser.generateHash(password);
 
                 // save the user
                 newUser.save(function(err) {
-                    if (err)
+                    if (err) {
+                        console.log('Error while saving')
                         throw err;
+                    }
                     return done(null, newUser);
                 });
             }
@@ -95,7 +116,7 @@ module.exports = function(passport) {
         // we are checking to see if the user trying to login already exists
         User.findOne({ 'local.username' :  username }, function(err, user) {
             // if there are any errors, return the error before anything else
-            if (err)
+            if (err) 
                 return done(err);
 
             // if no user is found, return the message
