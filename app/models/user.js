@@ -3,8 +3,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 
-mongoose.Promise = global.Promise;
-
 const UserSchema = mongoose.Schema({
     local: {
         username: {

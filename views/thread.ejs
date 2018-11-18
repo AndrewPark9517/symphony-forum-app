@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang = "en">
+<head>
+    <title> Thread Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+</head>
+<body>
+    <header>
+        <% include ./partials/header %>
+    </header>
+
+    <main>
+        <h2>hello</h1>
+        <p>
+            <span> <%= thread.post[0].user.local.username %> </span>
+            <span> <%= thread.post[0].content %> </span>
+            <span> <%= thread.post[0].created.getDay() %> </span>
+        </p>
+    </main>
+    
+
+</body>
+</html>

@@ -1,3 +1,6 @@
+// import Thread model which we'll need to pass into the ejs when rendering
+const { Thread } = require('./models/thread');
+
 // app/routes.js
 module.exports = function(app, passport) {
 
@@ -51,6 +54,14 @@ module.exports = function(app, passport) {
             user : req.user // get the user out of session and pass to template
         });
     });
+
+    app.get('/thread/:title', isLoggedIn, function(req,res) {
+        Thread.findOne({title: req.params.title})
+        .then(function(thread) {
+            res.render('thread.ejs', { thread: thread });
+        });
+    });
+    
 
     // =====================================
     // LOGOUT ==============================
