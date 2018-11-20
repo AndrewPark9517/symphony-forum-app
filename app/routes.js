@@ -64,7 +64,7 @@ module.exports = function(app, passport) {
         });
     });
 
-    app.post('/thread/:title', isLoggedIn, function(req,res) {
+    app.post('/thread/:title/post', isLoggedIn, function(req,res) {
         Thread.findOne({title: req.params.title})
         .then(function(thread) {
             console.log("thread to post to:", req.params.title);
@@ -79,7 +79,25 @@ module.exports = function(app, passport) {
         .then(function() {
             res.redirect(`/thread/${req.params.title}`);
         });
-    })
+    });
+
+    app.post('/thread/:title/comment', isLoggedIn, function(req,res) {
+        console.log("comment body:", req.body);
+        console.log("post index", req.body.post_index);
+        
+        Thread.findOne({title: req.params.title})
+        .then(function(thread) {
+            thread.post[req.body.post_index].comment.push({
+                content: req.body.comment,
+                user: req.body.user_id,
+                created: Date.now()
+            })
+            thread.save();
+        })
+        .then(function() {
+            res.redirect(`/thread/${req.params.title}`);
+        });
+    });
     
 
     // =====================================
