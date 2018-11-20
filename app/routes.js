@@ -58,9 +58,28 @@ module.exports = function(app, passport) {
     app.get('/thread/:title', isLoggedIn, function(req,res) {
         Thread.findOne({title: req.params.title})
         .then(function(thread) {
-            res.render('thread.ejs', { thread: thread });
+            res.render('thread.ejs', { 
+                thread: thread, 
+                user: req.user});
         });
     });
+
+    app.post('/thread/:title', isLoggedIn, function(req,res) {
+        Thread.findOne({title: req.params.title})
+        .then(function(thread) {
+            console.log("thread to post to:", req.params.title);
+            thread.post.push({
+                content: req.body.post,
+                user: req.body.user_id,
+                created: Date.now(),
+                comment: []
+            });
+            thread.save();
+        })
+        .then(function() {
+            res.redirect(`/thread/${req.params.title}`);
+        });
+    })
     
 
     // =====================================

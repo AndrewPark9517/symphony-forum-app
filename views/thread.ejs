@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
+    <link rel="stylesheet" href = "/thread.css">
+    
 </head>
 <body>
     <header>
@@ -14,14 +15,43 @@
     </header>
 
     <main>
-        <h2>hello</h1>
-        <p>
-            <span> <%= thread.post[0].user.local.username %> </span>
-            <span> <%= thread.post[0].content %> </span>
-            <span> <%= thread.post[0].created.getDay() %> </span>
-        </p>
+        
+        <form action = "/thread/<%= thread.title %>" method = "post"> 
+            <%= user.local.username %> <br />
+            <input type = "text" name = "post">
+            <input type = "submit" value = "submit">
+            <input type = "hidden" value = "<%= user._id %>" name = "user_id">
+        </form>
+         <ul class = "thread">
+            <% thread.post.reverse().forEach(function(post) { %>
+                <li class = "post">
+                    <span class = "username"><%= post.user.local.username %></span> 
+                    <span class = "date"><%= post.created.getMonth() + 1 %>/<%= 
+                        post.created.getDate() %>/<%= 
+                        post.created.getFullYear() %></span> <br />
+                    <span class = "content"><%= post.content %> </span>
+                    <% if(post.comment.length > 0) { %>
+                    <ul class = "comment-list"> 
+                        <% post.comment.forEach(function(comment) { %>
+                            <li class = "comment">
+                                <span class = "username"><%= comment.user.local.username %></span> 
+                                <span class = "date"><%= comment.created.getMonth() %>/<%=
+                                comment.created.getDay() %>/<%=
+                                comment.created.getFullYear() %> </span> <br />
+                                <span class = "content"><%= comment.content %></span>
+                            </li>
+                        <% }); %>
+                    </ul>
+                    <% } %>
+                </li>
+            <% }); %>
+        </ul>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type ="text/javascript" src ="/thread.js"></script>
     </main>
     
 
 </body>
 </html>
+
+ 

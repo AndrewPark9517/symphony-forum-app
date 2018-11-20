@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+/* header style */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    background-color: #333;
+    height: 40px;
+    padding: 0 10px;
+}
+
+.navbar-header * {
+    margin: 0;
+}
+
+.navbar-header h1 {
+    display: inline-block;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    padding: 10px 5px;
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #111;
+}
+
+
+/* main css */
+
+main {
+    padding: 0 10px;
+}
+
+ul {
+    margin: 0;
+}
+
+.thread {
+    padding: 0;
+}
+
+.post, .comment {
+    list-style: none;
+}
+
+
+
