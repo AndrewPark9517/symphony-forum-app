@@ -82,16 +82,18 @@ module.exports = function(app, passport) {
     });
 
     app.post('/thread/:title/comment', isLoggedIn, function(req,res) {
-        console.log("comment body:", req.body);
-        console.log("post index", req.body.post_index);
-        
+        console.log('post.id', req.body.post_id);
+        console.log('typeof post.id: ', typeof req.body.post_id);
         Thread.findOne({title: req.params.title})
         .then(function(thread) {
-            thread.post[req.body.post_index].comment.push({
+            const postIndex = thread.post.findIndex(function(post) {
+                return post._id == req.body.post_id;
+            });
+            thread.post[postIndex].comment.push({
                 content: req.body.comment,
                 user: req.body.user_id,
                 created: Date.now()
-            })
+            });
             thread.save();
         })
         .then(function() {
@@ -106,6 +108,11 @@ module.exports = function(app, passport) {
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
+    });
+
+    // to catch all bad requests
+    app.use('*', function(req, res) {   
+	    res.status(404).json({message: "Endpoint Not Found"});
     });
 };
 

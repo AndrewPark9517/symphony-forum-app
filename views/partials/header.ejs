@@ -11,8 +11,10 @@
     </ul>
 
     <ul class = "navbar-links">
-        <li class = 'navbar-profile'><a href = '/profile'> <%= user.local.username %></a></li>
-        <li class = 'navbar-logout'><a href = '/logout'>Logout</a></li>
+        <li class = 'navbar-profile hidden icon' title = "profile"><a href = '/profile'> <i class="far fa-user"></i></a></li>
+        <li class = 'navbar-profile word'><a href = '/profile'> <%= user.local.username %></a></li>
+        <li class = 'navbar-logout hidden icon' iitle = "logout"><a href = '/logout'><i class="fas fa-lock"></i></a></li>
+        <li class = 'navbar-logout word'><a href = '/logout'>Logout</a></li>
     </ul>
 </nav>
 

@@ -2,13 +2,14 @@
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    Font-Family: 'Open Sans', Sans-Serif;
+html {
+    height: 100%;
 }
 
-main {
-    min-height: 100vh;
+body {
+    margin: 0;
+    height: 100%;
+    Font-Family: 'Open Sans', Sans-Serif;
 }
 
 /* header style */
@@ -32,13 +33,6 @@ nav {
     display: inline-block;
 }
 
-nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
 nav a {
     padding: 9px 5px;
     color: white;
@@ -53,6 +47,7 @@ nav a:hover {
 
 main {
     display: flex;
+    height: 100%;
     padding-top: 40px;
 }
 
@@ -73,29 +68,71 @@ section {
     align-items: center;
 }
 
-::-webkit-scrollbar {
-    width: 0px;  /* remove scrollbar space */
-    background: transparent;  /* optional: just make scrollbar invisible */   
+.form-group {
+    margin: 25px 0px;
 }
 
-.button-container a {
-    
+.form-group input {
+    outline: none;
+    border-bottom: 1px solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.login-header *{
+    display: inline-block;
+}
+
+.login-header h1 {
+    margin-left: 10px;
+}
+
+.login-header .fa-address-book {
+    font-size: 25px;
+}
+
+button {
+    width: 100px;
+    height: 40px;
+    font-size: 1.2em;
+    border-radius: 10px;
     background-color: rgb(212, 42, 42);
     color: white;
+    border: none;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(182, 35, 35);
+}
+
+form {
+    border-bottom: 1px solid gray;
+}
+
+.login-box a {
+    color: orange;
     text-decoration: none;
-    margin: 5px 15px;
-    padding: 10px 15px;
-    border-radius: 10px;
 }
 
-.button-container a:hover {
-    background-color: rgb(112, 18, 18);
+.login-box a:hover {
+    text-decoration: underline;
 }
 
-.button-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+.alert {
+    padding: 5px 15px;
+    background-color: #f2dede;
+    color: #b94a48;
+    border: 1px solid transparent;
+    border-color: #ebccd1;
+    border-radius: 4px;
+    width: 240px;
+}
+
+.question {
+    font-size:.8em;
 }
 
 @media only screen and (max-width: 550px) {

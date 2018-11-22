@@ -4,16 +4,23 @@
 
 body {
     margin: 0;
+    Font-Family: 'Open Sans', Sans-Serif;
+}
+
+main {
+    min-height: 100vh;
 }
 
 /* header style */
 nav {
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: white;
     background-color: #333;
     height: 40px;
+    width: 100%;
     padding: 0 10px;
 }
 
@@ -33,7 +40,7 @@ nav ul {
 }
 
 nav a {
-    padding: 10px 5px;
+    padding: 9px 5px;
     color: white;
     text-decoration: none;
 }
@@ -44,9 +51,14 @@ nav a:hover {
 
 
 /* main css */
+.stage-center {
+    padding: 10px;
+    overflow-y: scroll;
+}
 
-main {
-    padding: 0 10px;
+.stage-center::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */   
 }
 
 ul {
@@ -57,9 +69,91 @@ ul {
     padding: 0;
 }
 
-.post, .comment {
-    list-style: none;
+.hidden {
+    display: none;
 }
 
+.post, .comment {
+    list-style: none;
+    font-size: .9em;
+}
 
+.content {
+    Font-Family: 'Raleway', Sans-Serif;
+}
 
+.date {
+    font-size: .9em;
+    color: gray;
+}
+
+.post {
+    margin: 10px 0px;
+}
+
+.comment {
+    margin: 5px 0px;
+}
+
+.input {
+    border-radius: 18px;
+    border: 1px solid lightgray;
+    outline: none;
+    padding: 2px 10px;
+}
+
+.comment-form {
+    margin-left: 40px;
+}
+
+.post-form {
+    padding-bottom: 10px;
+    border-bottom: 1px solid silver;
+}
+
+main {
+    display: flex;
+    padding-top: 40px;
+}
+
+aside {
+    flex: 1;
+    background-color:rgb(167, 16, 16);
+}
+
+section {
+    flex: 4;
+}
+
+.js-comment-display {
+    font-size: 0.8em;
+    color: lightslategray;
+    background: none;
+    padding: 0;
+    margin-left: 40px;
+    border: none;
+    outline:none;
+}
+
+.js-comment-display:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 550px) {
+    aside {
+        display: none;
+    }
+
+    .navbar-header {
+        display: none;
+    }
+
+    .icon {
+        display: inline-block;
+    }
+
+    .word {
+        display: none;
+    }
+}

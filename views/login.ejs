@@ -1,46 +1,57 @@
 <!doctype html>
-<html>
+<html lang = "en">
 <head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body { padding-top:80px; }
-    </style>
+    <title> Login </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href = "/login.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway:300,400" rel="stylesheet">
 </head>
 <body>
-<div class="container">
+<header>
+<nav>
+    <div class = "navbar-header">
+        <i class="fab fa-gitter"></i> 
+        <h1>Symphony</h1>
+    </div>
+    <a href = "/signup">Signup</a>
+</nav>
 
-<div class="col-sm-6 col-sm-offset-3">
-
-    <h1><span class="fa fa-sign-in"></span> Login</h1>
-
+</header>
+<main>
+    <aside class = "stage-left"></aside>
+    <section class = "stage-center">
+    <div class = "login-header">
+        <i class="far fa-address-book"></i><h1>Login</h1>
+    </div> 
     <!-- show any messages that come back with authentication -->
     <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
+        <div class="alert"><%= message %></div>
     <% } %>
-
+    
     <!-- LOGIN FORM -->
-    <form action="/login" method="post">
+    <div class = "login-box">
+        <form action="/login" method="post">
         <div class="form-group">
             <label>Username</label>
-            <input type="text" class="form-control" name="username" required>
+            <input type="text" name="username">
         </div>
         <div class="form-group">
             <label>Password</label>
-            <input type="password" class="form-control" name="password" required>
+            <input type="password" name="password">
         </div>
 
-        <button type="submit" class="btn btn-warning btn-lg">Login</button>
+        <button type="submit">Login</button>
     </form>
+    <span class = "question">Don't have an account? <a href="/signup">Signup</a></span> <br />
+    <span class = "question">Go to the home page? <a href="/">Home</a></span>
+    </div>
+    
+    </section>
+    <aside class = "stage-right"></aside>
 
-    <hr>
-
-    <p>Need an account? <a href="/signup">Signup</a></p>
-    <p>Or go <a href="/">home</a>.</p>
-
-</div>
-
-</div>
+</main>
 </body>
 </html>

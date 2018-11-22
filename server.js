@@ -11,6 +11,7 @@ const morgan       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const session      = require('express-session');
+const methodOverride = require('method-override')
 
 const configDB = require('./config/database.js');
 
@@ -23,7 +24,8 @@ require('./config/passport')(passport); // pass passport for configuration
 app.use(express.static("public")); // static files for ejs files 
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser()); // get information from html forms
+app.use(bodyParser()); // get information from html forms.
+app.use(methodOverride('_method')) // allow PUT/DELETE methods in form element
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 

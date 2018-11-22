@@ -1,27 +1,58 @@
 <!doctype html>
-<html>
+<html lang = "en">
 <head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <link rel="stylesheet" href="/index.css">
-    <style>
-        body { padding-top:80px; }
-    </style>
+    <title> Login </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href = "/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway:300,400" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-
-    <div class="jumbotron text-center">
-        <h1><span class="fa fa-lock"></span> Node Authentication</h1>
-
-        <p>Login or Register with:</p>
-
-        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
+<header>
+<nav>
+    <div class = "navbar-header">
+        <i class="fab fa-gitter"></i> 
+        <h1>Symphony</h1>
     </div>
+    <ul class = "navbar-links">
+        <li><a href = '/signup'> Signup </a></li>
+        <li><a href = '/signup'> Login </a></li>
+    </ul>
+</nav>
+</header>
+<main>
+    <aside class = "stage-left"></aside>
+    <section class = "stage-center">
+        <h1>Welcome to Symphony!</h1>
+        <p>Symphony was built to serve as a forum for classical musicians and those aspiring</p>
+        <section class = "announcement">
+            <article class = "instruction"></article>
+                <h2>Instruction</h2>
+                <ul>
+                    <li>General: The General channel is for discussion of any topic.</li>
+                    <li>Meetups: The Meetup channel is meant to faciliate meetups</li>
+                    <li>Critique: The Critique channel is meant to receive feedback from one another</li>
+                    <li>Note: For now, please use links to unlisted youtube videos when sharing on the Critique Channel</li>
+                </ul>
+            <article class = "rule">
+                <h2>Rules</h2>
+                <ul>
+                    <li>Always be respectful to one another</li>
+                    <li>Encourage those who are seeking to improve</li>
+                    <li>Note: Spamming, profanity, and the like will lead to immediate deletion of the account</li>
+                </ul>
+            </article>
+        </section>
+        <div class = "button-container">
+            <a href = "/login">Login</a> 
+            <a href = "/signup">Signup</a>
+        </div>
+        
+    </section>
+    <aside class = "stage-right"></aside>
 
-</div>
+</main>
 </body>
 </html>
-

@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang = "en">
 <head>
-    <title> Thread Title</title>
+    <title> <%= thread.title %> Thread</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href = "/thread.css">
-    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway:300,400" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -15,45 +15,60 @@
     </header>
 
     <main>
-        <!--EJS file, reads post/comment data for a forum thread from mongo database -->
-        <form action = "/thread/<%= thread.title %>/post" method = "post"> <!--Form to make a new post-->
-            <%= user.local.username %> <br />
-            <input type = "text" name = "post" required>
-            <input type = "hidden" value = "<%= user._id %>" name = "user_id">
-            <input type = "submit" value = "submit">
-        </form>
-         <ul class = "thread"> <!-- list to dislpay post belonging to thread-->
-            <% thread.post.reverse().forEach(function(post, index) { %>
-                <li class = "post">
-                    <span class = "username"><%= post.user.local.username %></span> 
-                    <span class = "date"><%= post.created.getMonth() + 1 %>/<%= 
-                        post.created.getDate() %>/<%= 
-                        post.created.getFullYear() %></span> <br />
-                    <span class = "content"><%= post.content %> </span>
-                    <% if(post.comment.length > 0) { %>
-                    <ul class = "comment-list"> <!-- if post has comments, display them here-->
-                        <% post.comment.forEach(function(comment) { %>
-                            <li class = "comment">
-                                <span class = "username"><%= comment.user.local.username %></span> 
-                                <span class = "date"><%= comment.created.getMonth() %>/<%=
-                                comment.created.getDay() %>/<%=
-                                comment.created.getFullYear() %> </span> <br />
-                                <span class = "content"><%= comment.content %></span>
-                            </li>
-                        <% }); %>
-                    </ul>
-                    <% } %>
-                    <form action = "/thread/<%= thread.title %>/comment" method = "post"> <!-- form to make a new comment-->
-                        <input type = "text" name = "comment" required>
-                        <input type = "submit" value = "submit">
-                        <input type = "hidden" value = "<%= user._id %>" name = "user_id"> 
-                        <input type = "hidden" value = "<%= index %>" name = "post_index"> <!-- NEED HELP HERE-->
-                        <!-- Need a way to pass the post's id so I can add to the database...the current method does not work
-                        since by the time the user sends the comment, the 'post' has no value-->
-                    </form> 
-                </li>
-            <% }); %>
-        </ul>
+        <aside class = "stage-left"></aside>
+        <section class = "stage-center">
+                <form action = "/thread/<%= thread.title %>/post" method = "post" class = "post-form"> 
+                    <%= user.local.username %> <br />
+                    <input type = "text" name = "post" class = "input input-post" 
+                        placeholder = "Write a post..." required>
+                    <input type = "hidden" value = "<%= user._id %>" name = "user_id">
+                </form> 
+                 <ul class = "thread"> 
+                    <% thread.post.reverse().forEach(function(post) { %>
+                        <li class = "post">
+                            <span class = "username"><%= post.user.local.username %></span> 
+                            <span class = "date"><%= post.created.getMonth() + 1 %>/<%= 
+                                post.created.getDate() %>/<%= 
+                                post.created.getFullYear() %></span> <br />
+                            <span class = "content"><%= post.content %> </span> <br />
+
+                            <% if(post.comment.length === 0) { %>
+                                <button class = "js-comment-display">comment</button>
+                            <% } %>
+                            <% if(post.comment.length === 1) { %>
+                                <button class = "js-comment-display">1 comment</button>
+                            <% } %>
+                            <% if(post.comment.length > 1) { %>
+                                <button class = "js-comment-display"><%= post.comment.length %> comments</button>
+                            <% } %>
+
+                            <div class = "comment-section hidden">
+                                <% if(post.comment.length > 0) { %>
+                                <ul class = "comment-list"> 
+                                    <% post.comment.forEach(function(comment) { %>
+                                        <li class = "comment">
+                                            <span class = "username"><%= comment.user.local.username %></span> 
+                                            <span class = "date"><%= comment.created.getMonth() + 1 %>/<%=
+                                            comment.created.getDate() %>/<%=
+                                            comment.created.getFullYear() %> </span> <br />
+                                            <span class = "content"><%= comment.content %></span>
+                                        </li>
+                                    <% }); %>
+                                </ul> 
+                                <% } %>                        
+                                <form action = "/thread/<%= thread.title %>/comment" method = "post" class = "comment-form"> 
+                                    <input type = "text" name = "comment" class = "input input-comment" 
+                                        placeholder = "Write a comment..." required>
+                                    <input type = "hidden" value = "<%= user._id %>" name = "user_id"> 
+                                    <input type = "hidden" value = "<%= post._id %>" name = "post_id">
+                                </form>
+                            </div> 
+                        </li>
+                    <% }); %>
+                </ul>
+        </section>
+        <aside class = "stage-right"></aside>
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type ="text/javascript" src ="/thread.js"></script>
     </main>
