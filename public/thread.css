@@ -53,10 +53,9 @@ nav a:hover {
 /* main css */
 .stage-center {
     padding: 10px;
-    overflow-y: scroll;
 }
 
-.stage-center::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 0px;  /* remove scrollbar space */
     background: transparent;  /* optional: just make scrollbar invisible */   
 }
@@ -138,6 +137,23 @@ section {
 .js-comment-display:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+.override-methods {
+    display: flex;
+    align-items: center;
+}
+
+.override-methods button {
+    background-color: white;
+    color: orange;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.override-methods button:hover {
+    color: red;
 }
 
 @media only screen and (max-width: 550px) {

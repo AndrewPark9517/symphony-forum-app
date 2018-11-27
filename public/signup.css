@@ -135,8 +135,8 @@ form {
     font-size:.8em;
 }
 
-@media only screen and (max-width: 550px) {
-    aside {
-        display: none;
+@media only screen and (max-width: 650px) {
+    main {
+        flex-direction: column;
     }
 }

@@ -1,0 +1,43 @@
+<!-- Profile Edit Page -->
+<!doctype html>
+<html>
+    <title> Profile Edit</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href = "/profileEdit.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway:300,400" rel="stylesheet">
+</head>
+<body>
+<header>
+    <% include ./partials/header %>
+</header>
+<main>
+<aside class = "stage-left"></aside>
+<section class = "stage-center">
+    <div class = "profile-box">
+        <h1> Profile Edit</h1>
+        <form action = "/profileEdit" method = "POST">
+            <div class = "form-labels">
+                <label>Username: </label>
+                <label>First Name: </label>
+                <label>Last Name: </label>
+                <label>Instrument: </label>
+            </div>
+            <div class = "form-inputs">
+                <span><%= user.local.username %></span><br />
+                <input type = "text" name = "firstName" value = <%= user.local.firstName %>><br />
+                <input type = "text" name = "lastName" value = <%= user.local.lastName %>><br />
+                <input type = "text" name = "instrument" value = <%= user.local.instrument %>><br />
+            </div> <br />
+            <button type = "submit">Submit</button>
+        </form>
+    </div>
+</section>
+<aside class = "stage-right"></aside>
+
+</main>
+    
+</body>
+</html>

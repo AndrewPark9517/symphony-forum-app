@@ -21,17 +21,13 @@ const UserSchema = mongoose.Schema({
         lastName: {
             type: String,
             default: ''
+        },
+        instrument: {
+            type: String,
+            default: ''
         }
     }
 });
-
-UserSchema.methods.serialize = function() {
-    return {
-        username: this.username || '',
-        firstName: this.firstName || '',
-        lastName: this.lastName || ''
-    };
-};
 
 // generating a hash
 UserSchema.methods.generateHash = function(password) {

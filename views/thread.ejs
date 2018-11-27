@@ -18,15 +18,14 @@
         <aside class = "stage-left"></aside>
         <section class = "stage-center">
                 <form action = "/thread/<%= thread.title %>/post" method = "post" class = "post-form"> 
-                    <%= user.local.username %> <br />
+                    <bold><%= user.local.username %></bold> <br />
                     <input type = "text" name = "post" class = "input input-post" 
                         placeholder = "Write a post..." required>
-                    <input type = "hidden" value = "<%= user._id %>" name = "user_id">
                 </form> 
                  <ul class = "thread"> 
                     <% thread.post.reverse().forEach(function(post) { %>
                         <li class = "post">
-                            <span class = "username"><%= post.user.local.username %></span> 
+                            <span class = "username"><bold><%= post.user.local.username %></bold></span> 
                             <span class = "date"><%= post.created.getMonth() + 1 %>/<%= 
                                 post.created.getDate() %>/<%= 
                                 post.created.getFullYear() %></span> <br />
@@ -51,7 +50,23 @@
                                             <span class = "date"><%= comment.created.getMonth() + 1 %>/<%=
                                             comment.created.getDate() %>/<%=
                                             comment.created.getFullYear() %> </span> <br />
-                                            <span class = "content"><%= comment.content %></span>
+                                            <span class = "content"><%= comment.content %></span> <br />
+                                            <% if(comment.user.local.username == user.local.username) { %>
+                                            <div class = "override-methods"> 
+                                                <form class = "comment-edit-form hidden" method = "POST" 
+                                                    action="/thread/<%= thread.title %>/comment?_method=PUT">
+                                                    <input type = "hidden" value = "<%= post._id %>" name = "post_id">
+                                                    <input type = "hidden" value = "<%= comment._id %>" name = "comment_id">
+                                                    <input type = "text" name = "content" class = "input" placeholder = "Edit Comment...">
+                                                </form>                                               
+                                                <button class = "js-comment-edit">Edit</button>                                                 
+                                                <form method="POST" action="/thread/<%= thread.title %>/comment?_method=DELETE">
+                                                    <input type = "hidden" value = "<%= post._id %>" name = "post_id">
+                                                    <input type = "hidden" value = "<%= comment._id %>" name = "comment_id">
+                                                    <button type="submit">Delete</button>
+                                                </form>
+                                            </div>
+                                            <% }; %>
                                         </li>
                                     <% }); %>
                                 </ul> 
@@ -59,7 +74,6 @@
                                 <form action = "/thread/<%= thread.title %>/comment" method = "post" class = "comment-form"> 
                                     <input type = "text" name = "comment" class = "input input-comment" 
                                         placeholder = "Write a comment..." required>
-                                    <input type = "hidden" value = "<%= user._id %>" name = "user_id"> 
                                     <input type = "hidden" value = "<%= post._id %>" name = "post_id">
                                 </form>
                             </div> 
