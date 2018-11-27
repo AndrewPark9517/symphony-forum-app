@@ -53,15 +53,11 @@ module.exports = function(app, passport) {
 
     // process edit request for profile is he/she is logged in
     app.post('/profileEdit', isLoggedIn, function(req,res) {
-        console.log('id:', req.user._id);
-        console.log('user: ', req.user.local.username);
-        console.log('req.body.lastName', req.body.lastName);
         User.findByIdAndUpdate(req.user._id, { $set: 
             {"local.firstName": req.body.firstName,
              "local.lastName": req.body.lastName,
              "local.instrument": req.body.instrument}}, {new: true})
-        .then(function(newUser) {
-            console.log(newUser);
+        .then(function() {
             res.redirect('/profile');
         });
     });

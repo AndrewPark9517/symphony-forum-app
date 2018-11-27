@@ -6,12 +6,17 @@ const chaiHttp = require('chai-http');
 const { app, runServer, closeServer } = require('../server');
 const { User } = require('../app/models/user.js');
 const configDB = require('../config/database.js');
-
+const flash    = require('connect-flash');
+const passport = require('passport');
+const session      = require('express-session');
+require('../config/passport')(passport);
+app.use(session({ secret: 'myfavoriteanimalisacat' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+require('../app/routes.js')(app, passport);
 const expect = chai.expect;
 
-// This let's us make HTTP requests
-// in our tests.
-// see: https://github.com/chaijs/chai-http
 chai.use(chaiHttp);
 
 describe('API endpoints', function() {
@@ -37,7 +42,8 @@ describe('API endpoints', function() {
                 throw err;
             });
         
-        /*User.create({
+        /* these two methods below did not work
+        User.create({ 
                 local: {
                     username,
                     password: this.generateHash(password)
