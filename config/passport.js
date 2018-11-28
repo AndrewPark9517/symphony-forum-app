@@ -49,44 +49,41 @@ module.exports = function(passport) {
             return done(null, false, req.flash('signupMessage', 'Password is too short '));
         }
         
-        // find a user whose email is the same as the forms email
-        // we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.username' :  username }, function(err, user) {
-            
-            // if there are any errors, return the error
-            if (err) {
-                console.log('Error occured');
-                return done(err);
-            }
+            // find a user whose email is the same as the forms email
+            // we are checking to see if the user trying to login already exists
+            User.findOne({ 'local.username' :  username }, function(err, user) {
 
-            // check to see if there's already a user with that email
-            if (user) { 
-                console.log('username already taken error');
-                return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
-            } else { 
+                // if there are any errors, return the error
+                if (err) {
+                    console.log('Error occured');
+                    return done(err);
+                }
 
-                // if there is no user with that email
-                // create the user
-                const newUser = new User();
-                
-                // set the user's local credentials
-                newUser.local.username = username;
-                newUser.local.password = newUser.generateHash(password);
+                // check to see if there's already a user with that email
+                if (user) { 
+                    console.log('username already taken error');
+                    return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
+                } else { 
 
-                // save the user
-                newUser.save(function(err) {
-                    if (err) {
-                        console.log('Error while saving')
-                        throw err;
-                    }
-                    return done(null, newUser);
-                });
-            }
+                    // if there is no user with that email
+                    // create the user
+                    const newUser = new User();
 
-        });    
+                    // set the user's local credentials
+                    newUser.local.username = username;
+                    newUser.local.password = newUser.generateHash(password);
 
+                    // save the user
+                    newUser.save(function(err) {
+                        if (err) {
+                            console.log('Error while saving')
+                            throw err;
+                        }
+                        return done(null, newUser);
+                    });
+                }
+            });    
         });
-
     }));
 
     passport.use('local-login', new LocalStrategy({
