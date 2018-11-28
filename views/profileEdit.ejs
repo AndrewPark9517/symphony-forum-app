@@ -14,29 +14,28 @@
     <% include ./partials/header %>
 </header>
 <main>
-<aside class = "stage-left"></aside>
-<section class = "stage-center">
-    <div class = "profile-box">
-        <h1> Profile Edit</h1>
-        <form action = "/profileEdit" method = "POST">
-            <div class = "form-labels">
-                <label>Username: </label>
-                <label>First Name: </label>
-                <label>Last Name: </label>
-                <label>Instrument: </label>
-            </div>
-            <div class = "form-inputs">
-                <span><%= user.local.username %></span><br />
-                <input type = "text" name = "firstName" value = <%= user.local.firstName %>><br />
-                <input type = "text" name = "lastName" value = <%= user.local.lastName %>><br />
-                <input type = "text" name = "instrument" value = <%= user.local.instrument %>><br />
-            </div> <br />
-            <button type = "submit">Submit</button>
-        </form>
-    </div>
-</section>
-<aside class = "stage-right"></aside>
-
+    <aside class = "stage-left"></aside>
+    <section class = "stage-center">
+        <div class = "profile-box">
+            <h1> Profile Edit</h1>
+            <form action = "/profileEdit" method = "POST">
+                <div class = "form-labels">
+                    <label>Username: </label>
+                    <label>First Name: </label>
+                    <label>Last Name: </label>
+                    <label>Instrument: </label>
+                </div>
+                <div class = "form-inputs">
+                    <span><%= user.local.username %></span><br />
+                    <input type = "text" name = "firstName" value = <%= user.local.firstName %>><br />
+                    <input type = "text" name = "lastName" value = <%= user.local.lastName %>><br />
+                    <input type = "text" name = "instrument" value = <%= user.local.instrument %>><br />
+                </div> <br />
+                <button type = "submit">Submit</button>
+            </form>
+        </div>
+    </section>
+    <aside class = "stage-right"></aside>
 </main>
     
 </body>

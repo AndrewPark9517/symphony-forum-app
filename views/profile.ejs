@@ -13,19 +13,18 @@
     <% include ./partials/header %>
 </header>
 <main>
-<aside class = "stage-left"></aside>
-<section class = "stage-center">
-    <div class = "profile-box">
-        <h1> Profile </h1>
-        <p><span>Username: </span><span><%= user.local.username %></span></p>
-        <p><span>First Name: </span><span><%= user.local.firstName %></span></p>
-        <p><span>Last Name: </span><span><%= user.local.lastName %></span></p>
-        <p><span>Instrument: </span><span><%= user.local.instrument %></span></p>
-        <a href = "/profileEdit">Edit Profile</a>
-    </div>
-</section>
-<aside class = "stage-right"></aside>
-
+    <aside class = "stage-left"></aside>
+    <section class = "stage-center">
+        <div class = "profile-box">
+            <h1> Profile </h1>
+            <p><span>Username: </span><span><%= user.local.username %></span></p>
+            <p><span>First Name: </span><span><%= user.local.firstName %></span></p>
+            <p><span>Last Name: </span><span><%= user.local.lastName %></span></p>
+            <p><span>Instrument: </span><span><%= user.local.instrument %></span></p>
+            <a href = "/profileEdit">Edit Profile</a>
+        </div>
+    </section>
+    <aside class = "stage-right"></aside>
 </main>
     
 </body>
