@@ -18,14 +18,15 @@
         <aside class = "stage-left"></aside>
         <section class = "stage-center">
             <form action = "/thread/<%= thread.title %>/post" method = "post" class = "post-form"> 
-                <bold><%= user.local.username %></bold> <br />
-                <input type = "text" name = "post" class = "input input-post" 
-                    placeholder = "Write a post..." required>
+                <b><%= user.local.username %></b> <br />
+                <textarea type = "text" name = "post" class = "input input-post" 
+                    placeholder = "Write a post..." required></textarea>
+                <button type="submit" class="submit-button">submit</button>
             </form> 
              <ul class = "thread"> 
                 <% thread.post.reverse().forEach(function(post) { %>
                     <li class = "post">
-                        <span class = "username"><bold><%= post.user.local.username %></bold></span> 
+                        <span class = "username"><b><%= post.user.local.username %></b></span> 
                         <span class = "date"><%= post.created.getMonth() + 1 %>/<%= 
                             post.created.getDate() %>/<%= 
                             post.created.getFullYear() %></span> <br />
@@ -44,7 +45,7 @@
                             <ul class = "comment-list"> 
                                 <% post.comment.forEach(function(comment) { %>
                                     <li class = "comment">
-                                        <span class = "username"><%= comment.user.local.username %></span> 
+                                        <span class = "username"><b><%= comment.user.local.username %></b></span> 
                                         <span class = "date"><%= comment.created.getMonth() + 1 %>/<%=
                                         comment.created.getDate() %>/<%=
                                         comment.created.getFullYear() %> </span> <br />
@@ -56,9 +57,10 @@
                                                 <input type = "hidden" value = "<%= post._id %>" name = "post_id">
                                                 <input type = "hidden" value = "<%= comment._id %>" name = "comment_id">
                                                 <input type = "text" name = "content" class = "input" placeholder = "Edit Comment...">
+                                                <button type="submit" class="submit-button">submit</button>
                                             </form>                                               
                                             <button class = "js-comment-edit">Edit</button>                                                 
-                                            <form method="POST" action="/thread/<%= thread.title %>/comment?_method=DELETE">
+                                            <form method="POST" class = "delete-form" action="/thread/<%= thread.title %>/comment?_method=DELETE">
                                                 <input type = "hidden" value = "<%= post._id %>" name = "post_id">
                                                 <input type = "hidden" value = "<%= comment._id %>" name = "comment_id">
                                                 <button type="submit">Delete</button>
@@ -73,6 +75,7 @@
                                 <input type = "text" name = "comment" class = "input input-comment" 
                                     placeholder = "Write a comment..." required>
                                 <input type = "hidden" value = "<%= post._id %>" name = "post_id">
+                                <button type="submit" class="submit-button">submit</button>
                             </form>
                         </div> 
                     </li>
