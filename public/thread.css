@@ -40,13 +40,19 @@ nav ul {
     padding: 0;
 }
 
-nav a {
+.page-title {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+nav a:not(.page-title) {
     padding: 9px 5px;
     color: white;
     text-decoration: none;
 }
 
-nav a:hover {
+nav a:not(.page-title):hover {
     background-color: #111;
 }
 
